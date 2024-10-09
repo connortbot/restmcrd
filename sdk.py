@@ -1,7 +1,7 @@
 import base64
 import requests
 
-image_path = "test_image.jpg"
+image_path = "noisy_image.png"
 url = "http://localhost:5000/denoise"
 
 with open(image_path, 'rb') as image_file:
@@ -14,9 +14,9 @@ with open(image_path, 'rb') as image_file:
             denoised_image_base64 = response.json().get('denoised_image')
             denoised_image_data = base64.b64decode(denoised_image_base64)
 
-            with open("denoised_output.jpg", "wb") as f:
+            with open("clean_image.png", "wb") as f:
                 f.write(denoised_image_data)
-            print("Denoised image saved as 'denoised_output.jpg'.")
+            print("Denoised image saved as 'clean_image.png'.")
         else:
             print(f"Error: status code {response.status_code}")
             print("Response:", response.json())
